@@ -1,0 +1,82 @@
+version: 2
+models: 
+
+  - name: fact_sales_order_line
+    data_tests: 
+      - dbt_utils.expression_is_true:
+          expression: "gross_amount = unit_price * quantity"
+      - dbt_utils.equal_rowcount: 
+          compare_model: "`trangdang.dbt_project.sales__order_lines`"
+    columns:
+      - name: sales_order_line_key
+        data_tests: 
+          - unique
+          - not_null
+
+      - name: sales_order_key
+        data_tests: 
+          - not_null
+          
+      - name: customer_key
+        data_tests: 
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+
+          
+      - name: sales_person_person_key
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_salesperson_person')
+              field: sales_person_person_key
+          
+      - name: sales_order_line_indicator_key
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_sales_order_line_indicator')
+              field: sales_order_line_indicator_key          
+      - name: contact_person_key
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_picked_by_person')
+              field: picked_by_person_person_key
+          
+      - name: product_key
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_product')
+              field: product_key
+          
+      - name: order_date
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_date')
+              field: date
+          - dbt_utils.accepted_range: 
+              min_value: "'2013-01-01'"
+              max_value: 'CURRENT_DATE()'
+          
+      - name: expected_delivery_date
+        data_tests: 
+          - not_null
+          - relationships: 
+              to: ref('dim_date')
+              field: date
+
+      - name: quantity
+        data_tests: 
+          - custom_test_equal_sum:
+              compare_model: "`trangdang.dbt_project.sales__order_lines`"
+              compare_column: quantity
+
+      # - name: unit_price
+      #   tests: 
+      #     - custom_test_equal_sum:
+      #         compare_model: "`trangdang.dbt_project.sales__order_lines`"
+      #         compare_column: unit_price

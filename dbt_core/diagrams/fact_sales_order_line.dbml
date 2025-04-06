@@ -1,0 +1,130 @@
+
+
+Table dim_customer {
+    customer_key int [pk]
+    customer_name text
+    is_statement_sent text
+    is_on_credit_hold text
+    credit_limit numeric
+    standard_discount_percentage numeric
+    payment_days numeric
+    account_opened_date timestamp
+    customer_category_name text
+    buying_group_name text
+    delivery_city_name text
+    delivery_state_province_name text
+    postal_city_name text
+    postal_state_province_name text
+    primary_contact_full_name text
+    alternate_contact_full_name text
+}
+Table dim_product {
+    product_key int [pk]
+    product_name text
+    brand_name text
+    supplier_name text
+    supplier_category_name text
+}
+
+Table dim_package_type {
+    package_type_key int [pk]
+    package_type_name text
+}
+
+Table dim_person {
+    person_key int [pk]
+    full_name text
+}
+Table dim_date {
+    date date
+    date_of_week text
+    date_of_week_short text
+    year_month date
+    month text
+    year_number numeric
+    is_weekday_or_weekend text
+}
+
+Table fact_sales_order_line {
+    sales_order_line_key int [pk]
+    sales_order_key text
+    product_key int [ref: > dim_product.product_key]
+    customer_key int [ref: > dim_customer.customer_key]
+    package_type_key int [ref:> dim_package_type.package_type_key]
+    sales_person_person_key int [ref:> dim_person.person_key]
+    picked_by_person_key int [ref:> dim_person.person_key]
+    contact_person_key int [ref:> dim_person.person_key]
+    quantity numeric
+    unit_price numeric
+    gross_amount numeric
+    tax_rate numeric
+    tax_amount numeric
+    net_amount numeric
+    order_date date [ref:> dim_date.date]
+    expected_delivery_date date [ref:> dim_date.date]
+}
+
+Table dim_customer {
+    customer_key int [pk]
+    customer_name text
+    is_statement_sent text
+    is_on_credit_hold text
+    credit_limit numeric
+    standard_discount_percentage numeric
+    payment_days numeric
+    account_opened_date timestamp
+    customer_category_name text
+    buying_group_name text
+    delivery_city_name text
+    delivery_state_province_name text
+    postal_city_name text
+    postal_state_province_name text
+    primary_contact_full_name text
+    alternate_contact_full_name text
+}
+Table dim_product {
+    product_key int [pk]
+    product_name text
+    brand_name text
+    supplier_name text
+    supplier_category_name text
+}
+
+
+Table dim_person {
+    person_key int [pk]
+    full_name text
+}
+Table dim_date {
+    date date
+    date_of_week text
+    date_of_week_short text
+    year_month date
+    month text
+    year_number numeric
+    is_weekday_or_weekend text
+}
+Table dim_sales_order_line_indicator {
+  sales_order_line_indicator_key int
+  is_undersupply_backordered text
+  package_type_name text
+}
+
+Table fact_sales_order_line {
+    sales_order_line_key int [pk]
+    sales_order_key text
+    product_key int [ref: > dim_product.product_key]
+    customer_key int [ref: > dim_customer.customer_key]
+    sales_order_line_indicator_key int [ref:> dim_sales_order_line_indicator.sales_order_line_indicator_key]
+    sales_person_person_key int [ref:> dim_person.person_key]
+    picked_by_person_key int [ref:> dim_person.person_key]
+    contact_person_key int [ref:> dim_person.person_key]
+    quantity numeric
+    unit_price numeric
+    gross_amount numeric
+    tax_rate numeric
+    tax_amount numeric
+    net_amount numeric
+    order_date date [ref:> dim_date.date]
+    expected_delivery_date date [ref:> dim_date.date]
+}

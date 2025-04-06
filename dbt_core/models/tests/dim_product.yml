@@ -1,0 +1,33 @@
+version: 2
+
+models: 
+  - name: dim_product
+    columns: 
+      - name: product_key
+        data_tests: 
+          - unique
+          - not_null
+          
+      - name: product_name
+        data_tests: 
+          - not_null
+          
+      - name: brand_name
+        data_tests: 
+          - not_null
+          
+      - name: supplier_key
+        data_tests: 
+          - not_null
+          
+      - name: supplier_name
+        data_tests: 
+          - not_null
+          
+      - name: supplier_category_key
+        data_tests: 
+          - not_null
+          
+      - name: supplier_category_name
+        data_tests: 
+          - not_null

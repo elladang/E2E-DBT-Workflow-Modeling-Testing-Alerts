@@ -1,0 +1,15 @@
+
+trangdang_dbt_project:
+  outputs:
+    dev:
+      project: trangdang
+      keyfile: /var/tmp/config/trangdang-17c18028ba0d.json 
+      dataset: sales_modeling
+      location: asia-southeast1
+      type: bigquery
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      method: service-account
+      priority: interactive
+      threads: 4
+  target: dev
