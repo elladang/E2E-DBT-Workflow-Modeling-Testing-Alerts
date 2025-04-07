@@ -48,7 +48,7 @@ Below are the schemas of the main tables I used in this project, extracted from 
 - **Testing Layer**: DBT tests for data quality.
 - **Scheduling & Monitoring**: Airflow DAGs for scheduling and email alerts
 
-![image.png](attachment:41198333-33f3-4109-bf24-04c9b6e3b1f9:image.png)
+![image.png](dbt_core/image.png)
 
 ### **Table of Key Components**
 
