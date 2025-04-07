@@ -127,7 +127,7 @@ FROM trangdang.dbt_project.sales__orders
 
 I ensured models run in the correct order based on dependencies. Here’s the dependency graph
 
-![image.png](attachment:6dca91c5-4e70-41cf-a117-dc3fe813c655:image.png)
+![image.png](dbt_core/diagrams/images(1).png)
 
 **4.3.2. Example Dimension Table: `dim_customer`** 
 
@@ -188,15 +188,7 @@ SELECT
 
 FROM dim_customer__source dc
 LEFT JOIN {{ref('stg_dim_customer_category')}} dcat 
-ON dc.customer_category_key = dcat.customer_category_key
-LEFT JOIN {{ref('stg_dim_buying_group')}} db
-ON dc.buying_group_key = db.buying_group_key
-LEFT JOIN {{ref('dim_city')}}dim_deli
-ON dc.delivery_city_key = dim_deli.city_key
-LEFT JOIN {{ref('dim_city')}}dim_pst
-ON dc.postal_city_key = dim_pst.city_key
-LEFT JOIN {{ref('dim_person')}} dper
-ON dc.primary_contact_person_key = dper.person_key
+...
 LEFT JOIN {{ref('dim_person')}} dpa
 ON dc.alternate_contact_person_key = dpa.person_key
 
@@ -284,67 +276,9 @@ models:
         - not_null
         - accepted_values: 
             values: ['On Credit Hold', 'Not On Credit Hold']
-
-    - name: standard_discount_percentage
-      data_tests: 
-        - not_null
-
-    - name: payment_days
-      data_tests: 
-        - not_null
-
-    - name: account_opened_date
-      data_tests: 
-        - not_null
-
-    - name: customer_category_key
-      data_tests: 
-        - not_null
-        - relationships:
-            to: ref('stg_dim_customer_category')
-            field: customer_category_key
-
-    - name: customer_category_name
-      data_tests: 
-        - not_null
-
-    - name: buying_group_key
-      data_tests: 
-        - not_null
-
-    - name: buying_group_name
-      data_tests: 
-        - not_null
-
-    - name: delivery_city_key
-      data_tests: 
-        - not_null
-
-    - name: delivery_city_name
-      data_tests: 
-        - not_null
+     ....
 
     - name: delivery_state_province_key
-      data_tests: 
-        - not_null
-
-    - name: delivery_state_province_name
-      data_tests: 
-        - not_null
-
-    - name: postal_city_key
-      data_tests: 
-        - not_null
-
-    - name: postal_city_name
-      data_tests: 
-        - not_null
-
-    - name: postal_state_province_key
-      data_tests: 
-        - not_null
-
-    - name: postal_state_province_name
       data_tests: 
         - not_null
 
