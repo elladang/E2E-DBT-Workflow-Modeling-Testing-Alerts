@@ -345,11 +345,12 @@ with DAG(
         task_id="dim_person",
         bash_command="cd /var/tmp && dbt deps && dbt test --select dim_person"
     )
+    ... 
     dbt_test_fact_sales = BashOperator(
         task_id="fact_sales_order_line",
         bash_command="cd /var/tmp && dbt deps && dbt test --select fact_sales_order_line"
     )
-    dbt_test_dim_person >> dbt_test_fact_sales
+    dbt_test_dim_person >> ... >> dbt_test_fact_sales
 ```
 
 ![image.png](dbt_core/diagrams/airflow_dbt_test.png)
