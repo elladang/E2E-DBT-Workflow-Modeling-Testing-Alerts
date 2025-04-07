@@ -352,4 +352,4 @@ with DAG(
     dbt_test_dim_person >> dbt_test_fact_sales
 ```
 
-![image.png](attachment:bc909660-4ec7-4281-b1fb-303c1ccf3642:image.png)
+![image.png](dbt_core/diagrams/airflow_dbt_test.png)
