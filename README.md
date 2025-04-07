@@ -127,7 +127,7 @@ FROM trangdang.dbt_project.sales__orders
 
 I ensured models run in the correct order based on dependencies. Here’s the dependency graph
 
-![image.png](dbt_core/diagrams/images(1).png)
+![image.png](dbt_core/diagrams/diagram.png)
 
 **4.3.2. Example Dimension Table: `dim_customer`** 
 
