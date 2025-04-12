@@ -7,7 +7,7 @@
     - Ensure data quality through comprehensive tests (not null, unique, foreign key, accepted values, etc.).
     - Automate the pipeline with Airflow and enable email alerts for errors.
     - Handle NULL values intelligently (distinguishing between NULLs from source data and NULLs due to missing data).
-## 2. Project Architecture Overview
+## 2. Architecture
 
 - **Source Data**: Wide World Importers dataset in BigQuery.
 - **Staging Layer**: Staging tables (stg_fact_sales_orders, stg_dim_person, etc.).
