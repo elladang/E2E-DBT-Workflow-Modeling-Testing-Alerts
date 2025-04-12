@@ -7,8 +7,27 @@
     - Ensure data quality through comprehensive tests (not null, unique, foreign key, accepted values, etc.).
     - Automate the pipeline with Airflow and enable email alerts for errors.
     - Handle NULL values intelligently (distinguishing between NULLs from source data and NULLs due to missing data).
+## 2. Project Architecture Overview
 
-## 2. Dataset Introduction: Wide World Importers
+- **Source Data**: Wide World Importers dataset in BigQuery.
+- **Staging Layer**: Staging tables (stg_fact_sales_orders, stg_dim_person, etc.).
+- **Analytical Layer**: Dimension and fact tables (dim_customer, fact_sales_order_line, etc.).
+- **Testing Layer**: DBT tests for data quality.
+- **Scheduling & Monitoring**: Airflow DAGs for scheduling and email alerts
+
+![image.png](dbt_core/image.png)
+
+### **Table of Key Components**
+
+| **Component** | **Description** | **Tool** |
+| --- | --- | --- |
+| Source Data | Wide World Importers dataset in BigQuery | BigQuery |
+| Staging Layer | Standardizes raw data, casts data types, adds default values | DBT |
+| Analytical Layer | Builds dimension and fact tables, joins data, computes metrics | DBT |
+| Testing Layer | Ensures data quality: not null, unique, foreign key, accepted values, etc. | DBT |
+| Scheduling | Schedules DBT jobs and sends email notifications on failure | Airflow |
+
+## 3. Dataset Introduction: Wide World Importers
 
 ### **About the Dataset**
 
@@ -40,25 +59,6 @@ Below are the schemas of the main tables I used in this project, extracted from 
 | `application__state_provinces`  | Stores state/province details | `state_province_id`, `state_province_name`  |
 | `warehouse__package_types` | Stores package type details | `package_type_id`, `package_type_name` |
 
-## 3. Project Architecture Overview
-
-- **Source Data**: Wide World Importers dataset in BigQuery.
-- **Staging Layer**: Staging tables (stg_fact_sales_orders, stg_dim_person, etc.).
-- **Analytical Layer**: Dimension and fact tables (dim_customer, fact_sales_order_line, etc.).
-- **Testing Layer**: DBT tests for data quality.
-- **Scheduling & Monitoring**: Airflow DAGs for scheduling and email alerts
-
-![image.png](dbt_core/image.png)
-
-### **Table of Key Components**
-
-| **Component** | **Description** | **Tool** |
-| --- | --- | --- |
-| Source Data | Wide World Importers dataset in BigQuery | BigQuery |
-| Staging Layer | Standardizes raw data, casts data types, adds default values | DBT |
-| Analytical Layer | Builds dimension and fact tables, joins data, computes metrics | DBT |
-| Testing Layer | Ensures data quality: not null, unique, foreign key, accepted values, etc. | DBT |
-| Scheduling | Schedules DBT jobs and sends email notifications on failure | Airflow |
 
 ## 🧪4. Project Workflow
 
