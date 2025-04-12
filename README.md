@@ -17,8 +17,6 @@
 
 ![image.png](dbt_core/image.png)
 
-### **Table of Key Components**
-
 | **Component** | **Description** | **Tool** |
 | --- | --- | --- |
 | Source Data | Wide World Importers dataset in BigQuery | BigQuery |
