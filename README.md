@@ -352,3 +352,6 @@ with DAG(
 ```
 
 ![image.png](dbt_core/diagrams/airflow_dbt_test.png)
+![image](https://github.com/user-attachments/assets/af2ae153-f281-4674-8252-5e0e23b44c7e)
+
+
